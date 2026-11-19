@@ -470,3 +470,191 @@ body .save-look:hover {
   outline: none;
   box-shadow: 0 0 0 3px rgba(233, 155, 197, 0.12);
 }
+
+/* Новый розовый стеклянный дизайн карточки «Какие планы?» */
+
+.plans-section {
+  background:
+    radial-gradient(ellipse at 8% 5%, #e69ab52b, transparent 42%),
+    radial-gradient(ellipse at 95% 95%, #a96b982b, transparent 45%),
+    linear-gradient(145deg, #523342ed, #2b202beF 58%, #432b3aed) !important;
+  border: 1px solid #f3bfd14d !important;
+  border-radius: 27px !important;
+  box-shadow:
+    inset 0 1px 0 #fff8fb24,
+    inset 0 -1px 0 #d58ba51c,
+    0 24px 65px #10080e66,
+    0 0 35px #e99bb51a !important;
+  color: #f9e8ef !important;
+}
+
+/* Заголовок */
+.plans-section .section-heading h2 {
+  color: #ffeaf2 !important;
+}
+
+.plans-section .section-heading > span {
+  color: #d6adbd !important;
+}
+
+/* Три верхних поля */
+.plans-section .plans-top-controls label {
+  color: #e4bdcc !important;
+}
+
+.plans-section .plans-top-controls select {
+  background: linear-gradient(145deg, #674454dd, #3c2935ee) !important;
+  color: #ffedf4 !important;
+  border: 1px solid #e9aec45c !important;
+  border-radius: 13px !important;
+  box-shadow: inset 0 1px 0 #fff3f51c, 0 7px 18px #160c1433;
+}
+
+.plans-section .plans-top-controls select option {
+  background: #392632;
+  color: #ffedf4;
+}
+
+/* Внутренние панели */
+.plans-section .orbit-panel,
+.plans-section .thermal-panel {
+  background:
+    linear-gradient(145deg, #ffffff12, transparent 45%),
+    linear-gradient(145deg, #694657a8, #382733d9) !important;
+  border: 1px solid #f1c1d34a !important;
+  border-radius: 21px !important;
+  box-shadow:
+    inset 0 1px 0 #fff7fb24,
+    0 12px 32px #160b143d !important;
+}
+
+/* Подписи */
+.plans-section .orbit-heading > span,
+.plans-section .eyebrow {
+  color: #e9aec5 !important;
+}
+
+.plans-section .orbit-heading small {
+  color: #d2afbd !important;
+}
+
+/* Центральный круг */
+.plans-section .orbit-core {
+  background:
+    radial-gradient(circle at 35% 25%, #f9dce8, transparent 75%),
+    linear-gradient(145deg, #e8b8cb, #b77e9b) !important;
+  border: 1px solid #ffe8f0 !important;
+  box-shadow:
+    0 12px 38px #10081070,
+    inset 0 1px 9px #fff !important;
+}
+
+.plans-section .core-kicker {
+  color: #80536a !important;
+}
+
+.plans-section .orbit-core strong {
+  color: #492b3d !important;
+}
+
+.plans-section .orbit-core > span:last-child {
+  color: #765064 !important;
+}
+
+/* Круглые кнопки активностей */
+.plans-section .orbit-item {
+  background: linear-gradient(145deg, #684657ed, #3c2939ed) !important;
+  border: 1px solid #f1c2d47a !important;
+  box-shadow:
+    inset 0 1px 0 #fff5fa24,
+    0 8px 22px #130a123d !important;
+}
+
+.plans-section .orbit-item small {
+  color: #f1dce5 !important;
+}
+
+.plans-section .orbit-item:hover,
+.plans-section .orbit-item.is-active {
+  background: linear-gradient(145deg, #d99bb5, #a86e8e) !important;
+  border-color: #ffe3ed !important;
+  box-shadow:
+    0 0 0 4px #f2b5d126,
+    0 12px 30px #10081066 !important;
+}
+
+.plans-section .orbit-item:hover small,
+.plans-section .orbit-item.is-active small {
+  color: #482b3d !important;
+}
+
+/* Кольцо вокруг активностей */
+.plans-section .orbit-ring {
+  border-color: #e8a9c477 !important;
+  box-shadow: 0 0 28px #e7a1c02b !important;
+}
+
+/* Тепловой индикатор */
+.plans-section .thermal-badge {
+  background: #bd829d35 !important;
+  border: 1px solid #eeb6cc55 !important;
+  color: #ffe5ef !important;
+}
+
+.plans-section .thermal-ends {
+  color: #d2adbd !important;
+}
+
+.plans-section .thermal-advice {
+  color: #e4c7d3 !important;
+}
+
+/* Слои одежды */
+.plans-section .layer-card {
+  background: linear-gradient(145deg, #70495bba, #432e3cdd) !important;
+  border: 1px solid #eab6ca4d !important;
+  border-radius: 13px !important;
+  box-shadow: inset 0 1px 0 #fff6fa17 !important;
+}
+
+.plans-section .layer-card strong {
+  color: #ffedf4 !important;
+}
+
+.plans-section .layer-card small {
+  color: #d5b6c4 !important;
+}
+
+.plans-section .layer-number {
+  color: #d6a6bb !important;
+}
+
+.plans-section .layer-card b {
+  color: #f0b6cc !important;
+}
+
+.plans-section .layer-card.is-needed {
+  background: linear-gradient(145deg, #795065, #4d3446) !important;
+  border-color: #e9a9c477 !important;
+}
+
+.plans-section .layer-card.is-extra {
+  background: #342632cc !important;
+  opacity: .65;
+}
+
+.plans-section .layer-card.is-extra b {
+  color: #c19aaa !important;
+}
+
+/* Адаптация для телефона */
+@media (max-width: 720px) {
+  .plans-section {
+    border-radius: 23px !important;
+  }
+
+  .plans-section .orbit-panel,
+  .plans-section .thermal-panel {
+    border-radius: 18px !important;
+  }
+}
