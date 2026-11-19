@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
+:root{color-scheme:dark;--ink:#f8e8ed;--muted:#c5a9b3;--blue:#f0a6bd;--line:#ecc0d322;--sky:#2e2027;background:#1d151a;color:var(--ink)}
+body{background:radial-gradient(ellipse at 3% 22%,#69344755,transparent 37%),radial-gradient(ellipse at 95% 65%,#a94e6940,transparent 35%),#1d151a;min-height:100vh;isolation:isolate}body:before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(circle,#f8c5d7aa 0 1px,transparent 1.7px),radial-gradient(circle,#f8c5d766 0 .7px,transparent 1.5px);background-size:157px 199px,251px 113px;background-position:19px 47px,74px 131px;opacity:.25}body:after{content:'';position:fixed;width:100vw;height:52vw;left:-22vw;top:22vh;border:1px solid #dc88a244;border-radius:50%;transform:rotate(-35deg);box-shadow:0 9px 35px #ee96b11a,inset 0 -12px 35px #ee96b11a;pointer-events:none;z-index:-1}
+.header{height:88px;border-bottom-color:#eab6c51a;max-width:1240px}.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;letter-spacing:-.7px;font-weight:500}.brand svg{fill:#eca9bf;width:29px}.brand-dot{color:#f5b2c8}.tagline{color:#b59ba5;font-size:12px}.location{border:1px solid #d8a2b438;background:#ffffff06;border-radius:22px;padding:10px 16px}.location:hover{background:#f9b4ce14}main{max-width:1144px}.intro{position:relative;padding:45px 0 37px;min-height:171px}.intro h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:52px;letter-spacing:-1.5px}.intro p{color:#c5a9b3;max-width:400px;line-height:1.6}.intro .date{align-self:flex-end;margin-bottom:12px;font-size:12px}.intro:after{content:'';position:absolute;width:235px;height:150px;left:49%;top:4px;background:url('butterfly.svg') center/contain no-repeat;pointer-events:none;opacity:.9;filter:drop-shadow(0 0 20px #fb91bb44)}
+.workspace{grid-template-columns:1.05fr 1fr;gap:26px;align-items:stretch}.weather-side,.outfit-side,.walk-section,.forecast-section{border:1px solid #e9a3bd50;background:linear-gradient(145deg,#ffffff07,#e4a0ba06 70%,#d886a42a);border-radius:25px;box-shadow:inset 0 1px 0 #ffe4ee16,0 16px 60px #00000018;overflow:hidden}.weather-side{align-self:stretch;background:radial-gradient(ellipse at 100% 90%,#d98ca957,transparent 50%),linear-gradient(145deg,#302128,#21191f 60%,#38242e);position:relative;display:flex;flex-direction:column}.weather-side:after{content:'';position:absolute;left:-10%;bottom:5%;width:120%;height:47%;border:1px solid #ffc4de44;border-radius:50%;transform:rotate(-21deg);box-shadow:0 8px 18px #f8a0c019,inset 0 -9px 22px #f8a0c019;pointer-events:none}.weather-top{padding:29px 30px 12px;align-items:start}.weather-period{color:#cfb0bc;font-size:12px}.temperature{font-family:'Cormorant Garamond',Georgia,serif;font-size:88px;color:#f8cad9;font-weight:400;letter-spacing:-4px;margin:8px 0}.weather-symbol svg{width:68px;height:68px;filter:drop-shadow(0 9px 12px #f6b1cc33)}.weather-top p,.weather-details{color:#d4bbc4}.weather-details{padding-top:36px}.weather-details strong{color:#fae8ee;font-weight:400}.small-icon{color:#eda8c0}.scene-wrap{margin-top:auto;z-index:1}.scene{aspect-ratio:560/390}.scene-caption{color:#ecd0dc;bottom:18px}.motion{border-color:#e5afc268;background:#c288a31a;color:#ffe3ed}.outfit-side{padding:28px 28px 25px;background:linear-gradient(145deg,#59404a55,#302229a6 60%,#734b5a50)}h2,.dialog-heading h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:400;letter-spacing:-.5px}.section-heading>span{color:#d5b6c2;font-size:11px}.advice{color:#d2b7c1;font-size:12px;margin:12px 0 17px;line-height:1.7}.garments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.garment{display:block;min-width:0;padding:0 0 12px;border:1px solid #dab2c42a;border-radius:13px;overflow:hidden;background:linear-gradient(145deg,#c498ac24,#ac6f8a0c)}.garment-art{width:100%;height:97px;border-radius:0;background:radial-gradient(ellipse at 55% 40%,#edb6ca29,transparent 72%);margin-bottom:3px}.garment-art svg{width:90px;height:83px;filter:drop-shadow(0 6px 5px #160d1788)}.garment h3{font-size:11px;font-weight:500;line-height:1.5;padding:0 10px;margin:0 0 4px;color:#f6e3eb}.garment p{font-size:10px;line-height:1.5;color:#c9adba;padding:0 10px}.take-block{border-top:1px solid #ddb3c82a;padding-top:17px;margin-top:21px}.take-block h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:400;color:#f3dce6}#takeAlong{color:#d3b6c3;font-size:11px}.take-item small{color:#c5a5b4}.personal-note{color:#bb9ca9;font-size:10px;margin-top:18px;line-height:1.7}.walk-section{padding:25px 28px;margin-top:25px}.walk-section h2,.forecast-section h2{font-size:28px}.walk-controls label{color:#c9a9b6}.walk-controls select,.walk-controls input{background:#33262d;border:1px solid #d2a0b43d;border-radius:11px;color:#f4dce7;min-height:45px;font-size:12px}.walk-controls select:hover{border-color:#e9a0bc88}.walk-controls select option{background:#302229;color:#f4dce7}.forecast-section{margin-top:25px;padding:25px 28px}.hourly{padding-top:20px;scrollbar-color:#a76a83 #34222b}.hour{background:#d199af08;border:1px solid #d2a0b41c;color:#d5b5c2;border-radius:13px;flex-basis:73px;gap:14px}.hour:hover{background:#c58ba526}.hour[aria-pressed=true]{background:linear-gradient(145deg,#b87591a6,#80516888);color:#fff2f7;border-color:#f8b6d1b3;box-shadow:0 0 18px #f5a2c026,inset 0 0 12px #eaa3bf22}.hour strong{color:#f8dbe7;font-family:'Cormorant Garamond',Georgia,serif;font-size:27px;font-weight:400}.hour small{color:#d5a9bd}.walk-summary{color:#c3a5b2}.notice{background:#68475366;color:#ffdae7;border:1px solid #d6a0b750}.notice button{color:#ffe0ee}footer{color:#b293a0;font-size:10px;border-top-color:#d5a2b126}.text-button{color:#f0b1c9}dialog{background:radial-gradient(ellipse at 100% 100%,#70445488,transparent 60%),#2a1e25;border:1px solid #d999b37a;border-radius:24px;color:#f9e8ef;box-shadow:0 0 35px #f3a6c323,0 30px 100px #000a}dialog::backdrop{background:#170d16ae;backdrop-filter:blur(10px)}dialog label{color:#d8b9c7}.search-line input{background:#3d2b35;border-color:#b5819855;color:#ffe6f0}.search-line input::placeholder{color:#ba97a8}.primary{background:linear-gradient(180deg,#f6b5cb,#e98eaf);color:#4b2435;border-radius:18px;box-shadow:0 0 16px #f2a0bd38}.geo-button{color:#efb1ca}.quick-cities{border-color:#b18a9a33}.quick-cities button{background:#7c536533;color:#f2d3e2;border:1px solid #c69aaf33;border-radius:12px}.search-result{background:transparent;color:#f8deea;border-color:#aa7b9133}.search-result:hover{background:#c28aa125}.search-result small{color:#cba6b9}.loading-outfit{color:#cfb1bf;grid-column:1/-1}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline-color:#ffb6d4}.save-look{display:block;width:100%;margin:20px 0 0;padding:13px 16px;border:1px solid #fac8da88;border-radius:22px;background:linear-gradient(180deg,#f5b0c8,#e78ba9);color:#4b2635;font-size:12px;box-shadow:0 0 23px #f39db740;transition:box-shadow .2s}.save-look:hover{box-shadow:0 0 32px #f39db76b}.save-look[aria-pressed=true]{background:#6d4256;color:#fbd6e7}.butterfly-mark{display:none}
+@media(min-width:1321px){main{max-width:1144px}.header{max-width:1240px}}@media(max-width:1000px){.workspace{gap:20px}.outfit-side{padding:24px 20px}.garments{grid-template-columns:repeat(2,minmax(0,1fr))}.garment-art{height:80px}.garment-art svg{height:74px}.intro:after{left:53%;width:170px;opacity:.65}.temperature{font-size:77px}.weather-top{padding:25px 22px}.weather-details p{font-size:11px}.weather-symbol svg{width:53px}}
+@media(max-width:720px){.header{height:76px;padding:0 21px}.brand{font-size:26px}.brand svg{width:24px}.location{font-size:12px;padding:8px 12px}main{margin:0 17px}.intro{padding:30px 4px 28px;min-height:145px}.intro h1{font-size:41px;max-width:260px}.intro p{font-size:11px;max-width:245px}.intro:after{width:125px;height:112px;left:auto;right:-7px;top:4px;opacity:.6;z-index:-1}.workspace{grid-template-columns:1fr;gap:20px}.weather-side,.outfit-side,.walk-section,.forecast-section{border-radius:23px}.weather-top{padding:25px 25px 0}.temperature{font-size:83px}.weather-details p{font-size:11px}.weather-symbol svg{width:60px;height:60px}.scene{aspect-ratio:560/365}.scene-caption{font-size:9px;bottom:16px;left:22px}.outfit-side{padding:23px 20px}.section-heading h2{font-size:28px}.section-heading>span{font-size:10px}.garments{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.garment-art{height:85px}.garment-art svg{width:76px;height:73px}.garment h3{padding:0 8px;font-size:10px}.garment p{padding:0 8px;font-size:9px}.walk-section,.forecast-section{padding:22px 19px;margin-top:20px}.walk-section .section-heading h2{font-size:27px}.walk-controls select{font-size:11px;padding-left:9px}.hour{flex-basis:69px}.personal-note{max-width:none}footer{padding-left:4px;line-height:1.8}.take-items{gap:12px}}@media(max-width:370px){.garments{grid-template-columns:repeat(2,minmax(0,1fr))}.intro h1{font-size:37px}.weather-top{padding:24px 20px 0}.temperature{font-size:72px}}
+
+/* Layered rose glass */
+:root{--glass-edge:#ffd9e855;--glass-shine:#fff8fb26;--glass-shadow:#09040870;--glass-blush:#e68ead1f}
+.weather-side,.outfit-side,.walk-section,.forecast-section{
+  border-color:var(--glass-edge);
+  background:
+    linear-gradient(116deg,var(--glass-shine),transparent 24%,transparent 72%,#e593b01a),
+    linear-gradient(145deg,#5a354445,#251a206b 58%,var(--glass-blush));
+  -webkit-backdrop-filter:blur(28px) saturate(145%);
+  backdrop-filter:blur(28px) saturate(145%);
+  box-shadow:
+    inset 0 1px 0 #fff7fb2e,
+    inset 1px 0 0 #ffe3ed14,
+    inset 0 -1px 0 #bd6e8c1f,
+    0 24px 70px var(--glass-shadow),
+    0 0 36px #ef97b00d;
+}
+.weather-side{
+  background:
+    radial-gradient(ellipse at 100% 92%,#e497b54d,transparent 48%),
+    linear-gradient(116deg,#fff8fb1f,transparent 28%,transparent 72%,#d57c9d14),
+    linear-gradient(145deg,#422d3766,#21171d8c 60%,#4c2c3970);
+}
+.outfit-side{
+  background:
+    linear-gradient(118deg,#fff8fb25,transparent 25%,transparent 74%,#e599b317),
+    linear-gradient(145deg,#704b595c,#2c20266e 58%,#633b4b52);
+}
+.location,.motion,.garment,.hour,.walk-controls select,.walk-controls input{
+  border-color:#f3bfd145;
+  background:linear-gradient(145deg,#fff7fb14,#efabc30a 55%,#9e5f7717);
+  -webkit-backdrop-filter:blur(16px) saturate(135%);
+  backdrop-filter:blur(16px) saturate(135%);
+  box-shadow:inset 0 1px 0 #fff8fb1f,inset 0 -1px 0 #b6648317,0 9px 24px #10090d2b;
+}
+.garment:hover,.hour:hover,.location:hover{
+  border-color:#ffd2e26e;
+  background:linear-gradient(145deg,#fff9fc20,#e99fba16 62%,#bd718e1f);
+}
+.save-look,.primary{
+  border-color:#ffe4ed8c;
+  background:linear-gradient(180deg,#ffd1dfed 0%,#f2a2bded 48%,#de7fa2ed 100%);
+  box-shadow:inset 0 1px 0 #fff,0 10px 26px #d86c9845,0 0 26px #f9acc82e;
+}
+.brunette{transform-box:fill-box;transform-origin:center bottom;animation:modelBreath 4.2s ease-in-out infinite}
+.hair-lock{transform-box:fill-box;transform-origin:center top;animation:hairSway 3.4s ease-in-out infinite alternate}
+.silk-ribbon{transform-box:fill-box;transform-origin:center;animation:ribbonDrift 6s ease-in-out infinite alternate}
+.sparkles{transform-box:fill-box;transform-origin:center;animation:sparklePulse 2.8s ease-in-out infinite alternate}
+@keyframes modelBreath{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.008)}}
+@keyframes hairSway{from{transform:rotate(-.8deg)}to{transform:rotate(.8deg)}}
+@keyframes ribbonDrift{from{transform:translateX(-5px) scaleX(.99);opacity:.72}to{transform:translateX(7px) scaleX(1.015);opacity:1}}
+@keyframes sparklePulse{from{opacity:.35}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.motion{display:none}}
+dialog{
+  background:
+    radial-gradient(ellipse at 100% 100%,#bd718e45,transparent 58%),
+    linear-gradient(135deg,#fff9fc1c,transparent 30%),
+    #25191fdb;
+  -webkit-backdrop-filter:blur(34px) saturate(150%);
+  backdrop-filter:blur(34px) saturate(150%);
+  box-shadow:inset 0 1px 0 #fff7fb32,0 30px 100px #000b,0 0 42px #f2a2be26;
+}
+@media(max-width:720px){.weather-side,.outfit-side,.walk-section,.forecast-section{-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%);box-shadow:inset 0 1px 0 #fff7fb2b,inset 0 -1px 0 #bd6e8c1c,0 18px 48px #0904085c}}
+
+/* Animated hero butterfly — no decorative orbit line */
+body:after{display:none}
+.intro:after{content:none;display:none}
+.hero-butterfly{position:absolute;width:235px;height:150px;left:49%;top:4px;pointer-events:none;filter:drop-shadow(0 0 20px #fb91bb4d)}
+.hero-butterfly svg{width:100%;height:100%;overflow:visible;animation:butterflyHover 3.8s ease-in-out infinite}
+.hero-wing{transform-box:view-box;transform-origin:140px 120px;will-change:transform}
+.hero-wing-left{animation:wingLeft 1.55s cubic-bezier(.45,.05,.55,.95) infinite}
+.hero-wing-right{animation:wingRight 1.55s cubic-bezier(.45,.05,.55,.95) infinite}
+.scene-caption{justify-content:flex-start}
+@keyframes wingLeft{0%,100%{transform:scaleX(1) rotate(0)}48%{transform:scaleX(.64) rotate(3deg)}}
+@keyframes wingRight{0%,100%{transform:scaleX(1) rotate(0)}48%{transform:scaleX(.64) rotate(-3deg)}}
+@keyframes butterflyHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:1000px){.hero-butterfly{left:53%;width:170px;height:125px;opacity:.82}}
+@media(max-width:720px){.hero-butterfly{width:125px;height:112px;left:auto;right:-7px;top:4px;opacity:.72;z-index:-1}}
+@media(prefers-reduced-motion:reduce){.hero-butterfly svg,.hero-wing,.brunette,.hair-lock,.silk-ribbon,.sparkles{animation:none!important}}
+@media (any-hover: hover) {
+  .scene .brunette {
+    filter: drop-shadow(0 6px 5px #170e19a6) drop-shadow(0 0 0 transparent);
+    transition: filter 220ms ease-out;
+  }
+  .scene .brunette:hover {
+    filter: drop-shadow(0 0 2px #ffe2ed) drop-shadow(0 0 9px #ef99bca6);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene .brunette { transition: none; }
+}
+
+@media (any-hover: hover) {
+  .cursor-panel { position: relative; }
+  .cursor-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(205px circle at var(--light-x, 50%) var(--light-y, 50%), #ffcfde19, transparent);
+    opacity: 0;
+    transition: opacity 180ms ease-out;
+  }
+  .cursor-panel.cursor-lit::before { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-panel::before { transition: none; }
+}

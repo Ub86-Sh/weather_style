@@ -1,0 +1,472 @@
+/* Живое небо, светило, погодные эффекты и матовое стекло.
+   Подключается после rose.css. Без внешних библиотек. */
+
+/* Регистрируем цвета, чтобы градиенты неба плавно перетекали (transition) */
+@property --sky-top { syntax: '<color>'; inherits: true; initial-value: #4f94cf; }
+@property --sky-mid { syntax: '<color>'; inherits: true; initial-value: #9fd0ef; }
+@property --sky-low { syntax: '<color>'; inherits: true; initial-value: #e6f4fb; }
+@property --glow { syntax: '<color>'; inherits: true; initial-value: #fff7e0; }
+@property --sun-core { syntax: '<color>'; inherits: true; initial-value: #fffbe8; }
+
+/* ---------- Базовые значения (день) ---------- */
+body {
+  --sky-top: #4f94cf;
+  --sky-mid: #9fd0ef;
+  --sky-low: #e6f4fb;
+  --glow: #fff7e0;
+  --sun-core: #fffbe8;
+  --sun-top: 9vh;
+  --sun-size: 150px;
+  --sun-o: 1;
+  --moon-top: 12vh;
+  --moon-size: 110px;
+  --moon-o: 0;
+  --horizon-o: 0.3;
+  --ink: #1d3247;
+  --muted: #48627a;
+  --line: #ffffff99;
+  --card: rgba(255, 255, 255, 0.5);
+  --accent: #2d6d9c;
+  --on-accent: #ffffff;
+  color: var(--ink);
+  transition: color 1.6s ease;
+}
+
+/* ---------- Фазы суток: реалистичные палитры неба ---------- */
+/* Рассвет: прохладная предрассветная синева, лиловая середина, персиковый горизонт */
+body[data-time="dawn"] {
+  --sky-top: #9db3d3;
+  --sky-mid: #e7c6cf;
+  --sky-low: #f9d7b4;
+  --glow: #ffd7a1;
+  --sun-core: #fff3dc;
+  --sun-top: 84vh;
+  --sun-size: 300px;
+  --sun-o: 1;
+  --moon-o: 0;
+  --horizon-o: 0.9;
+  --ink: #2a2740;
+  --muted: #5b5a72;
+  --line: #ffffff80;
+  --card: rgba(255, 255, 255, 0.44);
+  --accent: #b0557a;
+  --on-accent: #ffffff;
+}
+
+/* День: чистое голубое небо, светлеющее к горизонту */
+body[data-time="day"] {
+  --sky-top: #4f94cf;
+  --sky-mid: #9fd0ef;
+  --sky-low: #e6f4fb;
+  --glow: #fff7e0;
+  --sun-core: #fffbe8;
+  --sun-top: 9vh;
+  --sun-size: 150px;
+  --sun-o: 1;
+  --moon-o: 0;
+  --horizon-o: 0.3;
+  --ink: #1d3247;
+  --muted: #48627a;
+  --line: #ffffff99;
+  --card: rgba(255, 255, 255, 0.5);
+  --accent: #2d6d9c;
+  --on-accent: #ffffff;
+}
+
+/* Закат: глубокая сумеречная синева, сиреневый и коралловый, золото у горизонта */
+body[data-time="sunset"] {
+  --sky-top: #2b2f5e;
+  --sky-mid: #7a5a8f;
+  --sky-low: #e9896f;
+  --glow: #ffc27a;
+  --sun-core: #ffe2b0;
+  --sun-top: 64vh;
+  --sun-size: 330px;
+  --sun-o: 1;
+  --moon-o: 0;
+  --horizon-o: 1;
+  --ink: #fdf0ea;
+  --muted: #e8c6bd;
+  --line: #ffffff33;
+  --card: rgba(28, 20, 46, 0.42);
+  --accent: #ffb08a;
+  --on-accent: #2a1a26;
+}
+
+/* Ночь: глубокое ночное небо, свечение горизонта почти гаснет */
+body[data-time="night"] {
+  --sky-top: #050918;
+  --sky-mid: #111c3a;
+  --sky-low: #1d2b52;
+  --glow: #2a3c70;
+  --sun-o: 0;
+  --moon-top: 12vh;
+  --moon-size: 120px;
+  --moon-o: 1;
+  --horizon-o: 0.35;
+  --ink: #e8edfb;
+  --muted: #a8b3d6;
+  --line: #ffffff26;
+  --card: rgba(9, 13, 30, 0.5);
+  --accent: #b9c6f2;
+  --on-accent: #0b1226;
+}
+
+/* ---------- Небо и горизонт ---------- */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    var(--sky-top) 0%,
+    var(--sky-mid) 52%,
+    var(--sky-low) 84%,
+    var(--sky-low) 100%);
+  transition: --sky-top 1.6s ease, --sky-mid 1.6s ease, --sky-low 1.6s ease;
+}
+
+.horizon-light {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -20%;
+  height: 60%;
+  background: radial-gradient(ellipse 60% 55% at 50% 100%, var(--glow), transparent 72%);
+  opacity: var(--horizon-o);
+  transition: opacity 1.6s ease, --glow 1.6s ease;
+}
+
+/* ---------- Солнце ---------- */
+.celestial-body {
+  position: fixed;
+  left: 50%;
+  top: var(--sun-top);
+  width: var(--sun-size);
+  height: var(--sun-size);
+  margin-left: calc(var(--sun-size) / -2);
+  margin-top: calc(var(--sun-size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--sun-core) 0 34%, #ffd27a 52%, #ffb36b 64%, transparent 68%);
+  box-shadow:
+    0 0 90px 40px rgba(255, 214, 150, 0.35),
+    0 0 220px 120px rgba(255, 190, 120, 0.18);
+  opacity: var(--sun-o);
+  transition:
+    top 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    width 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    height 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.2s ease,
+    --sun-core 1.6s ease;
+  animation: breathe 7s ease-in-out infinite;
+}
+
+/* ---------- Луна ---------- */
+.moon {
+  position: fixed;
+  left: 50%;
+  top: var(--moon-top);
+  width: var(--moon-size);
+  height: var(--moon-size);
+  margin-left: calc(var(--moon-size) / -2);
+  margin-top: calc(var(--moon-size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0 30%, #e6ebf7 55%, #b9c2d8 80%, transparent 82%);
+  box-shadow:
+    0 0 60px 18px rgba(200, 215, 255, 0.22),
+    0 0 160px 80px rgba(160, 180, 255, 0.12);
+  opacity: var(--moon-o);
+  transition:
+    top 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    width 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    height 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.2s ease;
+  animation: breathe 7s ease-in-out infinite;
+}
+.moon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 60%, rgba(120, 130, 160, 0.25) 0 10%, transparent 11%),
+    radial-gradient(circle at 62% 38%, rgba(120, 130, 160, 0.2) 0 8%, transparent 9%),
+    radial-gradient(circle at 55% 72%, rgba(120, 130, 160, 0.18) 0 6%, transparent 7%);
+}
+
+/* Облачная дымка: светило приглушается при снеге и дожде */
+body[data-weather="snow"] .celestial-body,
+body[data-weather="rain"] .celestial-body {
+  opacity: calc(var(--sun-o) * 0.45);
+}
+body[data-weather="snow"] .moon,
+body[data-weather="rain"] .moon {
+  opacity: calc(var(--moon-o) * 0.45);
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.035) translateY(-8px); }
+}
+
+/* ---------- Текстуры стекла и бумаги ---------- */
+.fluted {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0 1px, transparent 1px 18px);
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+}
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image:
+    radial-gradient(circle, #000 0 0.6px, transparent 0.8px),
+    radial-gradient(circle, #fff 0 0.5px, transparent 0.7px);
+  background-size: 3px 3px, 5px 5px;
+}
+
+/* ---------- Погодный слой (под карточками) ---------- */
+.weather-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fx-snow,
+.fx-rain,
+.fx-wind {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+body[data-weather="snow"] .fx-snow,
+body[data-weather="rain"] .fx-rain,
+body[data-weather="wind"] .fx-wind {
+  display: block;
+}
+
+/* Снег */
+.flake {
+  position: absolute;
+  top: -6vh;
+  border-radius: 50%;
+  animation: snowfall linear infinite;
+}
+.flake.soft { filter: blur(1.5px); opacity: 0.7; }
+.flake-core {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff, rgba(255, 255, 255, 0.7));
+  opacity: 0.85;
+  animation: sway ease-in-out infinite alternate;
+}
+@keyframes snowfall {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, 115vh, 0); }
+}
+@keyframes sway {
+  from { transform: translateX(-14px); }
+  to { transform: translateX(14px); }
+}
+
+/* Дождь */
+.drop {
+  position: absolute;
+  top: -12vh;
+  width: 1.5px;
+  height: 48px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, transparent, rgba(190, 220, 255, 0.75));
+  transform: rotate(14deg);
+  animation: rainfall linear infinite;
+}
+@keyframes rainfall {
+  0% { transform: translate3d(0, 0, 0) rotate(14deg); }
+  100% { transform: translate3d(-16vh, 130vh, 0) rotate(14deg); }
+}
+
+/* Ветер */
+.gust {
+  position: absolute;
+  left: -30%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: rotate(-12deg);
+  animation: windGust linear infinite;
+}
+@keyframes windGust {
+  0% { transform: translate3d(0, 0, 0) rotate(-12deg); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate3d(150vw, -14vh, 0) rotate(-12deg); opacity: 0; }
+}
+
+/* ---------- Матовое стекло карточек ---------- */
+body .weather-side,
+body .outfit-side,
+body .walk-section,
+body .forecast-section {
+  background: var(--card);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  backdrop-filter: blur(28px) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 18px 50px rgba(0, 0, 0, 0.18);
+  color: var(--ink);
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 1.6s ease,
+    border-color 1.6s ease;
+}
+
+body .tilt {
+  position: relative;
+  transform-origin: center;
+  will-change: transform;
+}
+body .tilt.moving {
+  transition: transform 0.15s ease-out;
+}
+
+/* Блик, который следует за курсором */
+.glint {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.22), transparent 42%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.tilt.moving .glint { opacity: 1; }
+
+/* ---------- Пружинистые кнопки ---------- */
+body .location,
+body .primary,
+body .save-look,
+body .segments button {
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s,
+    color 0.3s;
+}
+body .location:hover,
+body .primary:hover,
+body .save-look:hover {
+  transform: translateY(-3px);
+}
+
+/* ---------- Пульсация статуса ---------- */
+.live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: middle;
+  animation: livePulse 2.4s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); }
+  50% { transform: scale(1.25); box-shadow: 0 0 0 7px transparent; }
+}
+
+/* ---------- Панель проверки неба ---------- */
+.sky-panel {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 60;
+  display: grid;
+  gap: 8px;
+  max-width: calc(100vw - 28px);
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  color: var(--ink);
+  font: 500 12px/1 'Golos Text', Arial, sans-serif;
+}
+.sky-panel .row { display: flex; flex-wrap: wrap; gap: 6px; }
+.sky-panel button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, color 0.3s;
+}
+.sky-panel button:hover { transform: translateY(-2px); }
+.sky-panel button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: transparent;
+}
+@media (max-width: 720px) {
+  .sky-panel { left: 10px; right: 10px; bottom: 10px; }
+}
+
+/* ---------- Доступность: без движения ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sky *, .sky-panel *, .live-dot, .flake, .flake-core, .drop, .gust {
+    animation: none !important;
+    transition: none !important;
+  }
+  .weather-fx { display: none; }
+}
+/* Единый стиль блока «Какие планы?» */
+.walk-section {
+  background: rgba(13, 19, 43, 0.72) !important;
+  border: 1px solid rgba(231, 160, 198, 0.28) !important;
+  border-radius: 26px !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 35px rgba(171, 125, 210, 0.08) !important;
+  color: #f5efff !important;
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+}
+
+.walk-section h2 {
+  color: #fff4fb;
+  letter-spacing: -0.6px;
+}
+
+.walk-controls label {
+  color: #c5bfd9;
+}
+
+.walk-controls select,
+.walk-controls input {
+  color: #f8efff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+}
+
+.walk-controls select:focus,
+.walk-controls input:focus {
+  border-color: #e99bc5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 155, 197, 0.12);
+}

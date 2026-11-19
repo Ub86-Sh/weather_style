@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 70% 0%, #3a2430 0%, #1a1316 60%);
+  color: #f5e6ee;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.glass {
+  background: linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02));
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 183, 206, 0.25);
+  border-radius: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+.serif {
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeScreen {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}

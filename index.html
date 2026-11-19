@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#e9f1f8"><meta name="description" content="Посмотрите погоду и соберите удобный комплект для прогулки. Одежда, обувь и полезные мелочи — по погоде."><title>По погоде — что надеть сегодня</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23e9f1f8'/%3E%3Cpath d='M12 14l5-3 3 3 3-3 5 3 4 10-6 2-2-5v12H16V21l-2 5-6-2z' fill='%23346b9b'/%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head>
+<body>
+<link rel="stylesheet" href="rose.css">
+<link rel="stylesheet" href="sky.css">
+<header class="header"><a href="./" class="brand" aria-label="По погоде — главная"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="m9 11 6-3 3 4 3-4 6 3 5 12-7 3-2-6v12H13V20l-2 6-7-3Z"/></svg>по погоде<span class="brand-dot">.</span></a><span class="tagline">Хорошая погода начинается с одежды</span><button id="cityButton" class="location" aria-haspopup="dialog"><span id="cityName">Москва</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button></header>
+<main>
+<div class="intro"><div><h1>Можно выходить.</h1><p>Посмотрим за окно и подберём, что надеть.</p></div><div class="hero-butterfly" aria-hidden="true"><svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="heroWing" x2=".7" y2="1"><stop stop-color="#ffd9eb" stop-opacity=".9"/><stop offset=".42" stop-color="#e990b4" stop-opacity=".16"/><stop offset="1" stop-color="#fcaaca" stop-opacity=".58"/></linearGradient><filter id="heroGlow"><feGaussianBlur stdDeviation="3"/></filter><g id="heroWingShape"><path d="M140 120C125 76 78 36 31 19c-1 38 31 90 90 108C59 96 71 155 112 158q21 1 28-38Z" fill="url(#heroWing)" stroke="#ffbdda" stroke-width=".8"/><g stroke="#ffd0e4" stroke-width=".6" fill="none" opacity=".72"><path d="M140 120 31 19m109 101L50 57m90 63L72 89m68 31-19 7m19-7-28 38M50 57q25-7 42 8M72 89q32-10 49 7M40 41q24-3 37 9m22 83 21 6m-30 5 33 4"/><path d="M38 32q4 48 94 87M81 127q10 28 48 13"/></g></g></defs><g class="hero-wing hero-wing-left"><use href="#heroWingShape"/></g><g class="hero-wing hero-wing-right"><use href="#heroWingShape" transform="translate(280 0) scale(-1 1)"/></g><path d="M140 146v-45m0 5-11-17m11 17 11-17" stroke="#ffcfdf" stroke-width="2" fill="none"/><g fill="#fbd3e3"><circle cx="35" cy="111" r="1"/><circle cx="221" cy="37" r="1.4"/><path d="m61 24 1-5 1 5 5 1-5 1-1 5-1-5-5-1Zm238 104 1-6 1 6 6 1-6 1-1 6-1-6-6-1Z"/></g></svg></div><p id="dateLabel" class="date"></p></div>
+<div id="notice" class="notice" role="status" hidden></div>
+<section class="workspace" aria-label="Погода и одежда">
+<div class="weather-side">
+<div class="weather-top"><div><div class="weather-period" id="periodLabel">Сейчас на улице</div><div class="temperature"><span id="temperature">—</span><span class="weather-symbol" id="weatherIcon"></span></div><p id="weatherText">Узнаём погоду…</p></div><div class="weather-details"><p>Ощущается <strong id="feels">—</strong></p><p><span class="small-icon">↝</span> Ветер <strong id="wind">—</strong></p><p><span class="small-icon">♧</span> Осадки <strong id="rain">—</strong></p></div></div>
+<div class="scene-wrap"><div id="scene" class="scene" role="img" aria-label="Подбираем одежду по погоде"></div><div class="scene-caption"><span id="sceneCaption">Ваш прогноз, в полный рост</span></div></div>
+</div>
+<div class="outfit-side"><div class="section-heading"><h2>Сегодня подойдёт</h2><span id="outfitFor">Для прогулки</span></div><p id="advice" class="advice">Собираем комплект с учётом температуры, ветра и осадков.</p><div id="garments" class="garments"><div class="loading-outfit">Немного терпения — смотрим прогноз.</div></div><div class="take-block"><h3>Взять с собой</h3><div id="takeAlong">Здесь появятся полезные мелочи для прогулки.</div></div><p class="personal-note">У всех свой комфорт. Настройте прогулку ниже — подберём слои под вас.</p></div>
+</section>
+<section class="walk-section plans-section" aria-labelledby="walkTitle">
+<div class="section-heading"><h2 id="walkTitle">Какие планы?</h2><span>Выберите ритм прогулки</span></div>
+<div class="plans-top-controls">
+<label>Во сколько выходишь?<select id="planDeparture" aria-label="Во сколько выходишь?"></select></label>
+<label>Длительность прогулки<select id="planDuration"><option value="0.5">30 минут</option><option value="1">1 час</option><option value="1.5">1,5 часа</option><option value="2">2 часа</option><option value="2.5">2,5 часа</option><option value="3">3 часа</option><option value="3.5">3,5 часа</option><option value="4">4 часа</option><option value="5">5 часов</option><option value="24">Весь день</option></select></label>
+<label>Обычно мне<select id="sensitivity"><option value="normal">Комфортно</option><option value="cold">Часто холодно</option><option value="warm">Часто жарко</option></select></label>
+</div>
+<div class="plans-layout">
+<div class="orbit-panel"><div class="orbit-heading"><span>ВЫБЕРИ АКТИВНОСТЬ</span><small>Ядро энергии</small></div>
+<div class="orbit-stage"><div class="orbit-ring"></div><div class="orbit-core" id="orbitCore"><span class="core-kicker">ТВОЙ ПЛАН</span><strong id="coreActivity">Спокойная прогулка</strong><span id="coreInterval">—</span></div>
+<button class="orbit-item is-active" data-activity="walk" style="--i:0"><span>🚶</span><small>Спокойная прогулка</small></button>
+<button class="orbit-item" data-activity="run" style="--i:1"><span>🏃</span><small>Пробежка</small></button>
+<button class="orbit-item" data-activity="bike" style="--i:2"><span>🚴</span><small>Велопрогулка</small></button>
+<button class="orbit-item" data-activity="pet" style="--i:3"><span>🐕</span><small>С питомцем</small></button>
+<button class="orbit-item" data-activity="training" style="--i:4"><span>🏋</span><small>Тренировка</small></button>
+<button class="orbit-item" data-activity="long" style="--i:5"><span>🥾</span><small>Долгий маршрут</small></button>
+</div></div>
+<aside class="thermal-panel"><div class="thermal-title"><div><span class="eyebrow">THERMAL RADAR</span><h3>Баланс тепла</h3></div><span id="thermalFeeling" class="thermal-badge">Ощущается комфортно</span></div>
+<div class="thermal-scale"><div class="thermal-track"><span id="thermalMarker"></span></div><div class="thermal-ends"><span>Свежо</span><span>Активный разогрев</span></div></div>
+<p id="thermalAdvice" class="thermal-advice">Подбираем слои под погоду и активность.</p>
+<div class="layer-stack" id="layerStack">
+<article class="layer-card" data-layer="base"><span class="layer-number">01</span><div><strong>Базовый слой</strong><small>Футболка или термобельё</small></div><b>НУЖЕН</b></article>
+<article class="layer-card" data-layer="mid"><span class="layer-number">02</span><div><strong>Средний слой</strong><small>Лонгслив или свитер</small></div><b>НУЖЕН</b></article>
+<article class="layer-card" data-layer="shell"><span class="layer-number">03</span><div><strong>Защита от ветра</strong><small>Ветровка или куртка</small></div><b>НУЖЕН</b></article>
+</div></aside></div>
+<div class="legacy-controls" aria-hidden="true"><label>Когда выходите<select id="departure"><option value="now">Сейчас</option></select></label><label>На сколько<select id="duration"><option value="0.5">30 минут</option><option value="1" selected>1 час</option><option value="2">2 часа</option><option value="custom">Другое время</option></select></label><label id="customDurationLabel" hidden>Часов на улице<input id="customDuration" type="number" min="0.5" max="24" step="0.5" value="3"></label><label>Темп<select id="activity"><option value="walk">Спокойная прогулка</option><option value="brisk">Быстрый шаг</option><option value="run">Пробежка</option></select></label></div>
+</section>
+<section class="forecast-section" aria-labelledby="forecastTitle"><div class="section-heading forecast-heading"><div><h2 id="forecastTitle">А дальше как?</h2><span>Выберите час — атмосфера и прогноз изменятся</span></div><div class="forecast-arrows"><button type="button" id="hourPrev" aria-label="Прокрутить назад">‹</button><button type="button" id="hourNext" aria-label="Прокрутить вперёд">›</button></div></div><div id="hourly" class="hourly" aria-label="Почасовой прогноз"></div><p id="walkSummary" class="walk-summary"></p></section>
+<footer><span>По погоде. С заботой о ваших прогулках.</span><div><span id="updated">Данные загружаются</span><button id="refresh" class="text-button">Обновить</button><a href="https://open-meteo.com/" target="_blank" rel="noopener">Погода: Open-Meteo</a></div></footer>
+</main>
+<dialog id="cityDialog"><form id="cityForm"><div class="dialog-heading"><h2>Где будем гулять?</h2><button type="button" id="closeCity" class="close" aria-label="Закрыть">×</button></div><label for="citySearch">Город</label><div class="search-line"><input id="citySearch" type="search" placeholder="Например, Казань" autocomplete="off" minlength="2" required><button type="submit" class="primary">Найти</button></div><button type="button" id="locate" class="geo-button">⌖ Определить моё местоположение</button><div id="searchResults" class="search-results" aria-live="polite"></div><div class="quick-cities"><button type="button" data-city="moscow">Москва</button><button type="button" data-city="spb">Санкт-Петербург</button><button type="button" data-city="kazan">Казань</button><button type="button" data-city="makhachkala">Махачкала</button></div></form></dialog>
+<script type="module" src="sky.js"></script>
+<script type="module" src="plans.js"></script>
+<script type="module" src="app.js"></script>
+</body></html>
